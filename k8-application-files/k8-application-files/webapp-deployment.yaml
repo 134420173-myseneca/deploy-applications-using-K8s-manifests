@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: webapp-flask-app
+  namespace: application
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: webapp-flask-app
+  template:
+    metadata:
+      labels:
+        app: webapp-flask-app
+    spec:
+      containers:
+        - name: webapp-flask-app
+          image: 063129952770.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.1-app
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DBHOST
+              value: "mysql-svc.database.svc.cluster.local"
+            - name: DBPORT
+              value: "3306"
+            - name: DBUSER
+              value: "root"
+            - name: DBPWD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: password
