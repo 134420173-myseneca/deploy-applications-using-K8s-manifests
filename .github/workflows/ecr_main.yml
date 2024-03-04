@@ -33,7 +33,7 @@ jobs:
         IMAGE_TAG: v1.1-db
       run: |
 
-        # Docker build image for database for ecr repository mysql
+        # Docker build image for database for the ecr repository mysql
         docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG -f Dockerfile_mysql .
         # Docker push image to ecr repository mysql with image tag
         docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
