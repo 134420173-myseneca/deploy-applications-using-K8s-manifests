@@ -30,7 +30,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: mysql
-        IMAGE_TAG: v1.1-db
+        IMAGE_TAG: v1.2-db
       run: |
 
         # Docker build image for database for the ecr repository mysql
@@ -41,7 +41,7 @@ jobs:
       env:
         ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
         ECR_REPOSITORY: webapp
-        IMAGE_TAG: v1.1-app
+        IMAGE_TAG: v1.2-app
       run: |
 
         # Docker build image for python web app
