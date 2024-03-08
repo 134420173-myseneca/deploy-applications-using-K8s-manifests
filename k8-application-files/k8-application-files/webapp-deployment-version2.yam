@@ -1,0 +1,37 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: employees-app-deployment-v2
+  namespace: webapp
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: employees
+      version: v2
+  template:
+    metadata:
+      labels:
+        app: employees
+        version: v2  # New label for version 2 employees webapp
+    spec:
+      containers:
+        - name: employees
+          image: 063129952770.dkr.ecr.us-east-1.amazonaws.com/webapp:v1.2-app
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DBHOST
+              value: "mysql-svc.sqldb.svc.cluster.local"
+            - name: DBPORT
+              value: "3306"
+            - name: DBUSER
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: username
+            - name: DBPWD
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-credentials
+                  key: password
