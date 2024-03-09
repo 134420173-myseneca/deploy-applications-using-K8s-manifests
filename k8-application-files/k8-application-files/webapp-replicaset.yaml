@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: employees-app-replicaset
+  labels:
+    app: employees
   namespace: webapp
 spec:
   replicas: 3
