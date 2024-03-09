@@ -4,7 +4,7 @@ metadata:
   name: employees-app-deployment
   namespace: webapp
 spec:
-  replicas: 1
+  replicas: 3
   selector:
     matchLabels:
       app: employees
@@ -20,7 +20,7 @@ spec:
             - containerPort: 8080
           env:
             - name: DBHOST
-              value: "mysql-svc.database.svc.cluster.local"
+              value: "mysql-svc.sqldb.svc.cluster.local"
             - name: DBPORT
               value: "3306"
             - name: DBUSER
