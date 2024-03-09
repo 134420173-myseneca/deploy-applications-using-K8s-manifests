@@ -2,8 +2,10 @@ apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: mysql-replicaset
+  labels:
+    app: mysql  # Adding label to the ReplicaSet itself
 spec:
-  replicas: 3
+  replicas: 1
   selector:
     matchLabels:
       app: mysql
@@ -28,4 +30,3 @@ spec:
             secretKeyRef:
               name: mysql-credentials
               key: password
-
